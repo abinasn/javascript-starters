@@ -1,0 +1,99 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <script src="js/tailwind.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'media',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'lato': ['Lato', 'sans-serif'],
+                    },
+                    colors: {
+                        background: "#E2DEDE",
+                        primary: '#845EC2',
+                        hover: '#F1EDED',
+                        border: '#d2bbf8',
+                        dark: {
+                            background: '#1a1a1a',
+                            primary: '#a27ee3',
+                            hover: '#2d2d2d',
+                            border: '#4a4a4a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-background dark:bg-dark-background font-lato m-0 p-0 h-screen w-screen">
+    <main class="min-h-screen flex items-center justify-center w-screen">
+        <div class="grid grid-cols-1 md:grid-cols-2 place-items-center gap-16 w-screen max-w-7xl">
+            <div class="order-last md:order-first">
+                <h1 class="text-4xl md:text-6xl text-primary dark:text-dark-primary font-medium mb-8">
+                    Let's Play the <br />
+                    Tic-tac-toe <br /> Game!
+                </h1>
+                <button
+                    class="bg-primary hover:bg-hover dark:bg-dark-primary dark:hover:bg-dark-hover text-white dark:text-white hover:text-primary dark:hover:text-dark-primary font-medium py-3 px-6 rounded-lg text-lg transition-colors duration-300"
+                    aria-label="Start game">
+                    Start a new Game
+                </button>
+            </div>
+            <div class="order-first md:order-last" aria-label="Game grid">
+                <div class="flex flex-col items-center" aria-label="Game container">
+                    <!-- Player Tabs -->
+                    <div class="flex gap-8 mb-8 w-80">
+                        <div class="pb-2 px-8 border-b-2 border-border dark:border-dark-border text-primary dark:text-dark-primary font-medium cursor-pointer">
+                            Player X
+                        </div>
+                        <div class="pb-2 px-8 text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-dark-primary font-medium cursor-pointer">
+                            Player O
+                        </div>
+                    </div>
+
+                    <!-- Game Grid -->
+                    <div class="w-80 h-80 grid grid-cols-3" aria-label="Tic-tac-toe board">
+                        <button
+                            class="border-b-2 border-r-2 border-border dark:border-dark-border hover:bg-violet-200 dark:hover:bg-dark-hover transition-colors duration-300 aspect-square"
+                            aria-label="Cell 1"></button>
+                        <button
+                            class="border-b-2 border-r-2 border-border dark:border-dark-border hover:bg-violet-200 dark:hover:bg-dark-hover transition-colors duration-300 aspect-square"
+                            aria-label="Cell 2"></button>
+                        <button
+                            class="border-b-2 border-border dark:border-dark-border hover:bg-violet-200 dark:hover:bg-dark-hover transition-colors duration-300 aspect-square"
+                            aria-label="Cell 3"></button>
+
+                        <button
+                            class="border-b-2 border-r-2 border-border dark:border-dark-border hover:bg-violet-200 dark:hover:bg-dark-hover transition-colors duration-300 aspect-square"
+                            aria-label="Cell 4"></button>
+                        <button
+                            class="border-b-2 border-r-2 border-border dark:border-dark-border hover:bg-violet-200 dark:hover:bg-dark-hover transition-colors duration-300 aspect-square"
+                            aria-label="Cell 5"></button>
+                        <button
+                            class="border-b-2 border-border dark:border-dark-border hover:bg-violet-200 dark:hover:bg-dark-hover transition-colors duration-300 aspect-square"
+                            aria-label="Cell 6"></button>
+
+                        <button
+                            class="border-r-2 border-border dark:border-dark-border hover:bg-violet-200 dark:hover:bg-dark-hover transition-colors duration-300 aspect-square"
+                            aria-label="Cell 7"></button>
+                        <button
+                            class="border-r-2 border-border dark:border-dark-border hover:bg-violet-200 dark:hover:bg-dark-hover transition-colors duration-300 aspect-square"
+                            aria-label="Cell 8"></button>
+                        <button class="dark:border-dark-border hover:bg-violet-200 dark:hover:bg-dark-hover transition-colors duration-300 aspect-square"
+                            aria-label="Cell 9"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
