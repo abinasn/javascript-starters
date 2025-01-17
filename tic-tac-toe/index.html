@@ -6,31 +6,7 @@
     <title>Tic-Tac-Toe</title>
     <link href="css/style.css" rel="stylesheet" />
     <script src="js/tailwind.js"></script>
-    <script src="js/app.js"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'media',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'lato': ['Lato', 'sans-serif'],
-                    },
-                    colors: {
-                        background: "#E2DEDE",
-                        primary: '#845EC2',
-                        hover: '#F1EDED',
-                        border: '#d2bbf8',
-                        dark: {
-                            background: '#1a1a1a',
-                            primary: '#a27ee3',
-                            hover: '#2d2d2d',
-                            border: '#4a4a4a'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <script src="js/tailwind.config.js"></script>
 </head>
 
 <body class="bg-background dark:bg-dark-background font-lato m-0 p-0 h-screen w-screen">
@@ -51,10 +27,10 @@
                 <div class="flex flex-col items-center" aria-label="Game container">
                     <!-- Player Tabs -->
                     <div class="flex gap-8 mb-8 w-80">
-                        <div class="pb-2 px-8 border-b-2 border-border dark:border-dark-border text-primary dark:text-dark-primary font-medium cursor-pointer">
+                        <div onclick="onChangePlayer('playerX')" aria-label="playerX" class="pb-2 px-8 border-b-2 border-playerX-primary dark:border-playerX-primary text-playerX-primary dark:text-playerX-primary font-medium cursor-pointer">
                             Player X
                         </div>
-                        <div class="pb-2 px-8 text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-dark-primary font-medium cursor-pointer">
+                        <div onclick="onChangePlayer('playerO')" aria-label="playerO" class="pb-2 px-8 text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-dark-primary font-medium cursor-pointer">
                             Player O
                         </div>
                     </div>
@@ -94,6 +70,8 @@
             </div>
         </div>
     </main>
+
+    <script src="js/app.js"></script>
 </body>
 
 </html>
