@@ -5,3 +5,67 @@
     font-display: swap;
     src: url(/Lato/Lato-Bold.ttf) format('truetype');
 }
+
+
+/* X Shape with animation */
+.x-shape {
+    position: relative;
+    width: 75px;
+    height: 50px;
+}
+
+.x-shape::before,
+.x-shape::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    background-color: #c34a36;
+    border-radius: 8px;
+    top: 50%;
+    left: 0;
+    animation: drawX 0.3s ease forwards;
+}
+
+.x-shape::before {
+    transform: rotate(45deg);
+    transform-origin: center;
+}
+
+.x-shape::after {
+    transform: rotate(-45deg);
+    transform-origin: center;
+}
+
+@keyframes drawX {
+    from {
+        width: 0;
+        opacity: 0;
+    }
+
+    to {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+/* O Shape with animation */
+.o-shape {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    border: 10px solid #4d8076;
+    animation: drawO 0.3s ease forwards;
+}
+
+@keyframes drawO {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

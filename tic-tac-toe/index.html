@@ -19,52 +19,24 @@
                 </h1>
                 <button
                     class="bg-primary hover:bg-hover dark:bg-dark-primary dark:hover:bg-dark-hover text-white dark:text-white hover:text-primary dark:hover:text-dark-primary font-medium py-3 px-6 rounded-lg text-lg transition-colors duration-300"
-                    aria-label="Start game">
+                    aria-label="Start game" onclick="init()">
                     Start a new Game
                 </button>
             </div>
             <div class="order-first md:order-last" aria-label="Game grid">
                 <div class="flex flex-col items-center" aria-label="Game container">
                     <!-- Player Tabs -->
-                    <div class="flex gap-8 mb-8 w-80">
-                        <div onclick="onChangePlayer('playerX')" aria-label="playerX" class="pb-2 px-8 border-b-2 border-playerX-primary dark:border-playerX-primary text-playerX-primary dark:text-playerX-primary font-medium cursor-pointer">
+                    <div class="flex gap-8 pb-8 w-80">
+                        <div onclick="onChangePlayer('playerX')" aria-label="playerX" class="pb-2 px-8 border-b-2 border-playerX-primary dark:border-playerX-primary text-playerX-primary dark:text-playerX-primary font-medium cursor-pointer transition-all duration-300 ease-in-out">
                             Player X
                         </div>
-                        <div onclick="onChangePlayer('playerO')" aria-label="playerO" class="pb-2 px-8 text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-dark-primary font-medium cursor-pointer">
+                        <div onclick="onChangePlayer('playerO')" aria-label="playerO" class="pb-2 px-8 text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-dark-primary font-medium cursor-pointer transition-all duration-300 ease-in-out">
                             Player O
                         </div>
                     </div>
 
                     <!-- Game Grid -->
-                    <div class="w-80 h-80 grid grid-cols-3" aria-label="Tic-tac-toe board">
-                        <button
-                            class="border-b-2 border-r-2 border-border dark:border-dark-border hover:bg-violet-200 dark:hover:bg-dark-hover transition-colors duration-300 aspect-square"
-                            aria-label="Cell 1"></button>
-                        <button
-                            class="border-b-2 border-r-2 border-border dark:border-dark-border hover:bg-violet-200 dark:hover:bg-dark-hover transition-colors duration-300 aspect-square"
-                            aria-label="Cell 2"></button>
-                        <button
-                            class="border-b-2 border-border dark:border-dark-border hover:bg-violet-200 dark:hover:bg-dark-hover transition-colors duration-300 aspect-square"
-                            aria-label="Cell 3"></button>
-
-                        <button
-                            class="border-b-2 border-r-2 border-border dark:border-dark-border hover:bg-violet-200 dark:hover:bg-dark-hover transition-colors duration-300 aspect-square"
-                            aria-label="Cell 4"></button>
-                        <button
-                            class="border-b-2 border-r-2 border-border dark:border-dark-border hover:bg-violet-200 dark:hover:bg-dark-hover transition-colors duration-300 aspect-square"
-                            aria-label="Cell 5"></button>
-                        <button
-                            class="border-b-2 border-border dark:border-dark-border hover:bg-violet-200 dark:hover:bg-dark-hover transition-colors duration-300 aspect-square"
-                            aria-label="Cell 6"></button>
-
-                        <button
-                            class="border-r-2 border-border dark:border-dark-border hover:bg-violet-200 dark:hover:bg-dark-hover transition-colors duration-300 aspect-square"
-                            aria-label="Cell 7"></button>
-                        <button
-                            class="border-r-2 border-border dark:border-dark-border hover:bg-violet-200 dark:hover:bg-dark-hover transition-colors duration-300 aspect-square"
-                            aria-label="Cell 8"></button>
-                        <button class="dark:border-dark-border hover:bg-violet-200 dark:hover:bg-dark-hover transition-colors duration-300 aspect-square"
-                            aria-label="Cell 9"></button>
+                    <div class="w-80 h-80 grid grid-cols-3" aria-label="Tic-tac-toe board" id="tic-tac-grid">
                     </div>
                 </div>
             </div>
