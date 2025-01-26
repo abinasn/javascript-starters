@@ -125,11 +125,14 @@ function onCheckGame() {
     for (let i = 0; i < winningArray.length; i++) {
         const [x,y,z] = winningArray[i];
         if(gameData[x] === gameData[y] && gameData[x] === gameData[z]){
-            console.log(x,y,z, gameData[x])
             return gameData[x]
         }
     }
     return null;
+}
+
+function onCheckEndGame(){
+    return !Object.values(gameData).includes(null);
 }
 
 function onClickGrid(row, col) {
@@ -148,6 +151,11 @@ function onClickGrid(row, col) {
     const result = onCheckGame();
     if(result){
         onEndGame(result, "add");
+        return;
+    }
+    const end = onCheckEndGame();
+    if(end){
+        onEndGame(null, "add");
     }
 }
 
