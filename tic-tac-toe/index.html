@@ -27,16 +27,21 @@
                 <div class="flex flex-col items-center" aria-label="Game container">
                     <!-- Player Tabs -->
                     <div class="flex gap-8 pb-8 w-80">
-                        <div onclick="onChangePlayer('playerX')" aria-label="playerX" class="pb-2 px-8 border-b-2 border-playerX-primary dark:border-playerX-primary text-playerX-primary dark:text-playerX-primary font-medium cursor-pointer transition-all duration-300 ease-in-out">
+                        <div onclick="onChangePlayer('playerX', 'click')" aria-label="playerX"
+                            class="pb-2 px-8 border-b-2 border-playerX-primary dark:border-playerX-primary text-playerX-primary dark:text-playerX-primary font-medium cursor-pointer transition-all duration-300 ease-in-out">
                             Player X
                         </div>
-                        <div onclick="onChangePlayer('playerO')" aria-label="playerO" class="pb-2 px-8 text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-dark-primary font-medium cursor-pointer transition-all duration-300 ease-in-out">
+                        <div onclick="onChangePlayer('playerO', 'click')" aria-label="playerO"
+                            class="pb-2 px-8 text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-dark-primary font-medium cursor-pointer transition-all duration-300 ease-in-out">
                             Player O
                         </div>
                     </div>
 
                     <!-- Game Grid -->
-                    <div class="w-80 h-80 grid grid-cols-3" aria-label="Tic-tac-toe board" id="tic-tac-grid">
+                    <div class="relative w-80 h-80 grid grid-cols-3" aria-label="Tic-tac-toe board" id="tic-tac-grid">
+                        <div id="end" class="overlay invisible">
+                            <div id="end-text" class="overlay-text"></div>
+                        </div>
                     </div>
                 </div>
             </div>

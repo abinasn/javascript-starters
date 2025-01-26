@@ -1,21 +1,39 @@
 const playerX = "playerX", playerO = "playerO";
 const playerXElement = document.querySelector(`[aria-label="${playerX}"]`);
 const playerOElement = document.querySelector(`[aria-label="${playerO}"]`);
-let start = false;
+let startGame = false;
 let selectedPlayer = playerX;
-let game = [], rows = 3, cols = 3
+let gameData = {}, rows = 3, cols = 3;
+const winningArray = [
+    ["00", "01", "02"],
+    ["10", "11", "12"],
+    ["20", "21", "22"],
+    ["00", "10", "20"],
+    ["01", "11", "21"],
+    ["02", "12", "22"],
+    ["00", "11", "22"],
+    ["02", "11", "20"],
+];
 
 function onCreateNewGame() {
-    start = false;
+    startGame = false;
     selectedPlayer = playerX;
-    game = Array.from({ length: rows }, () => Array(cols).fill(null));
+    gameData = {};
+    for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
+            gameData[`${i}${j}`.toString()] = null
+        }
+    }
 }
 
-function onClearGame(){
-    document.querySelectorAll(".grid-btns").forEach(btn=>btn.remove());
+function onClearGame() {
+    document.querySelectorAll(".grid-btns").forEach(btn => btn.remove());
+    onDisablePlayer(playerX, "remove");
+    onDisablePlayer(playerO, "remove");
+    onEndGame(null, "remove");
 }
 
-function onCreateGrid(){
+function onCreateGrid() {
     const element = document.getElementById("tic-tac-grid");
     let classList = [
         "border-b-2",
@@ -32,28 +50,50 @@ function onCreateGrid(){
         "items-center",
         "grid-btns"
     ]
-    for(let i=0;i<rows;i++){
+    for (let i = 0; i < rows; i++) {
         let classes = [...classList]
-        if(i==rows-1){
+        if (i == rows - 1) {
             classes.shift();
         }
-        for(let j=0;j<cols;j++){
+        for (let j = 0; j < cols; j++) {
             const button = document.createElement("button");
-            if(j==cols-1){
-                classes.splice(classes.findIndex(c=>c==="border-r-2"),1)
+            if (j == cols - 1) {
+                classes.splice(classes.findIndex(c => c === "border-r-2"), 1)
             }
             button.classList.add(...classes);
-            button.id=`${i}-${j}`;
-            button.addEventListener("click", ()=>{
-                onClickGrid(i,j)
+            button.id = `${i}-${j}`;
+            button.addEventListener("click", () => {
+                onClickGrid(i, j)
             })
             element.appendChild(button);
         }
     }
 }
 
+function onDisablePlayer(player, action) {
+    let ele = player === playerX ? playerXElement : playerOElement;
+    ele.classList[action]("opacity-25", "cursor-not-allowed")
+}
 
-function onChangePlayer(player) {
+function onEndGame(result, action) {
+    const endGameDiv = document.getElementById("end");
+    const endGameDivInnerText = document.getElementById("end-text");
+    if (action === "add") {
+        let text = "";
+        if (result === 'X') text = "Player X won";
+        else if (result === 'O') text = "Player O won";
+        else text = "Game ends"
+        endGameDivInnerText.innerText = text;
+        endGameDiv.classList.remove("invisible");
+        endGameDiv.classList.add("visible");
+    } else {
+        endGameDiv.classList.remove("visible");
+        endGameDiv.classList.add("invisible");
+    }
+}
+
+function onChangePlayer(player, callType) {
+    if (callType === "click" && startGame) return;
     const playerXClasses = ["border-playerX-primary", "text-playerX-primary", "dark:text-playerX-primary", "dark:border-playerX-primary"];
     const playerOClasses = ["border-playerO-primary", "text-playerO-primary", "dark:text-playerO-primary", "dark:border-playerO-primary"];
     const activeClasses = [
@@ -80,22 +120,43 @@ function onChangePlayer(player) {
 }
 
 
-function onClickGrid(r,c){
-    const btn = document.getElementById(`${r}-${c}`);
-    if(!btn) return;
+
+function onCheckGame() {
+    for (let i = 0; i < winningArray.length; i++) {
+        const [x,y,z] = winningArray[i];
+        if(gameData[x] === gameData[y] && gameData[x] === gameData[z]){
+            console.log(x,y,z, gameData[x])
+            return gameData[x]
+        }
+    }
+    return null;
+}
+
+function onClickGrid(row, col) {
+    const btn = document.getElementById(`${row}-${col}`);
+
+    if (!btn) return;
     let div = document.createElement("div");
     div.classList.add("grid-data");
     div.classList.add(selectedPlayer === playerX ? "x-shape" : "o-shape");
     btn.appendChild(div);
-    onChangePlayer(selectedPlayer === playerX ? playerO : playerX)
+    onChangePlayer(selectedPlayer === playerX ? playerO : playerX, "swap");
+    onDisablePlayer(selectedPlayer === playerX ? playerX : playerO, "remove");
+    onDisablePlayer(selectedPlayer === playerX ? playerO : playerX, "add");
+    if (!startGame) startGame = true;
+    gameData[`${row}${col}`] = selectedPlayer === playerX ? "O" : "X";
+    const result = onCheckGame();
+    if(result){
+        onEndGame(result, "add");
+    }
 }
 
-function init(){
-    start = false, game = [];
+function init() {
+    startGame = false, gameData = [];
     onClearGame();
     onCreateNewGame();
     onCreateGrid();
-    onChangePlayer(playerX)
+    onChangePlayer(playerX, "swap");
 }
 
 init()
